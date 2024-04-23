@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
 	logoText: {
 		height: 100,
 		width: '100%',
-		marginBottom: 40,
+		marginBottom: 30,
 		marginTop: -60,
 	},
 	logo: {
 		height: 284,
 		width: 286,
-		marginBottom: 70,
+		marginBottom: 60,
 	},
 	loginBtn: {
 		height: 48,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	registerBtn: {
-		marginTop: 10,
+		marginTop: 30,
 		height: 48,
 		width: 241,
 		backgroundColor: '#869C71',
