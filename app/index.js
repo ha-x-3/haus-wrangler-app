@@ -1,6 +1,9 @@
 import { View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function Page() {
+
+	const router = useRouter();
 
 	const logoText = require('../assets/HausWranglerText.png');
 	const logo = require('../assets/HausWrangler.png');
@@ -21,7 +24,11 @@ export default function Page() {
 					source={logo}
 					style={styles.logo}
 				/>
-				<TouchableOpacity style={styles.loginBtn}>
+				<TouchableOpacity 
+					onPress={() => {
+						router.replace("/Login");
+					}}
+					style={styles.loginBtn}>
 					<Text style={styles.loginText}>Login</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.registerBtn}>
