@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { decode as atob } from 'base-64';
 
 const AuthContext = createContext();
 
@@ -12,7 +13,8 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	const checkAuthentication = async () => {
-		const token = AsyncStorage.getItem('user');
+		const token = await AsyncStorage.getItem('user');
+		console.log(token);
 		if (token) {
 			try {
 				const decodedToken = decodeJWT(token);
@@ -56,7 +58,7 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async (callback) => {
 		try {
-			const token = AsyncStorage.getItem('user');
+			const token = await AsyncStorage.getItem('user');
 			await axios.post('http://localhost:8080/api/logout', null, {
 				headers: {
 					Authorization: `Bearer ${token}`,
