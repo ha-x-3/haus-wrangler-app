@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	const checkAuthentication = async () => {
-		const token = localStorage.getItem('user');
+		const token = AsyncStorage.getItem('user');
 		if (token) {
 			try {
 				const decodedToken = decodeJWT(token);
@@ -42,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 			);
 			if (response.data.accessToken) {
 				const token = response.data.accessToken;
-				localStorage.setItem('user', token);
+				AsyncStorage.setItem('user', token);
 				checkAuthentication();
 			} else {
 				console.error('Invalid response format');
@@ -55,13 +56,13 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async (callback) => {
 		try {
-			const token = localStorage.getItem('user');
+			const token = AsyncStorage.getItem('user');
 			await axios.post('http://localhost:8080/api/logout', null, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			localStorage.removeItem('user');
+			AsyncStorage.removeItem('user');
 			setUser(null);
 			callback();
 		} catch (error) {
