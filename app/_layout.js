@@ -1,5 +1,6 @@
 import { Slot } from "expo-router";
 import { AuthProvider, logToken } from "./AuthContext";
+import Header from "./Header";
 
 export default function Layout() {
 
@@ -7,6 +8,7 @@ export default function Layout() {
 
     return (
         <AuthProvider>
+            <Header />
             <Slot />
         </AuthProvider>
     );
