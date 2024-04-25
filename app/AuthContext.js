@@ -68,7 +68,9 @@ export const AuthProvider = ({ children }) => {
 		try {
 			await SecureStore.deleteItemAsync('token');
 			setUser(null);
-			callback();
+			if (callback) {
+				callback();
+			}
 		} catch (error) {
 			console.error('Error logging out:', error);
 		}

@@ -1,13 +1,33 @@
-import { View, ImageBackground, Image, Pressable, Text, StyleSheet } from 'react-native';
+import {
+	View,
+	ImageBackground,
+	Image,
+	Pressable,
+	Text,
+	StyleSheet,
+} from 'react-native';
 import { useRouter } from 'expo-router';
+import { useAuth } from './AuthContext';
 
 export default function Page() {
-
 	const router = useRouter();
-
 	const logoText = require('../assets/HausWranglerText.png');
 	const logo = require('../assets/HausWrangler.png');
 	const background = require('../assets/loftLeft.png');
+	const { user, logout } = useAuth();
+
+	const handleLogin = () => {
+		router.push('/screens/Login');
+	};
+
+	const handleLogout = async () => {
+		try {
+			await logout();
+			router.push('/screens/Login');
+		} catch (error) {
+			console.error('Error logging out:', error);
+		}
+	};
 
 	return (
 		<View style={styles.container}>
@@ -24,21 +44,28 @@ export default function Page() {
 					source={logo}
 					style={styles.logo}
 				/>
-				<Pressable
-					onPress={() => {
-						router.push('/screens/Login');
-					}}
-					style={styles.loginBtn}
-				>
-					<Text style={styles.loginText}>Login</Text>
-				</Pressable>
+				{user ? (
+					<Pressable
+						onPress={handleLogout}
+						style={styles.loginBtn}
+					>
+						<Text style={styles.loginText}>Logout</Text>
+					</Pressable>
+				) : (
+					<Pressable
+						onPress={handleLogin}
+						style={styles.loginBtn}
+					>
+						<Text style={styles.loginText}>Login</Text>
+					</Pressable>
+				)}
 				<Pressable style={styles.registerBtn}>
 					<Text style={styles.registerText}>Register New User</Text>
 				</Pressable>
 			</ImageBackground>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {

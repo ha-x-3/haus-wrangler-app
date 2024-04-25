@@ -22,8 +22,8 @@ export default function Login() {
 		try {
 			await login(email, password);
 			// Navigate to the EditScreen after successful login
-			//router.push('/EditScreen');
 			alert('Login Successful!');
+			router.push('/');
 		} catch (error) {
 			console.error('Error has occurred', error);
 			alert('An error has occurred while logging in.');
