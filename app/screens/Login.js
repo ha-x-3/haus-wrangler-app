@@ -23,11 +23,16 @@ export default function Login() {
 			await login(email, password);
 			// Navigate to the EditScreen after successful login
 			//router.push('/EditScreen');
-			alert("Login Successful!")
+			alert('Login Successful!');
 		} catch (error) {
 			console.error('Error has occurred', error);
 			alert('An error has occurred while logging in.');
 		}
+	};
+
+	const handleCancel = () => {
+		// Navigate back to the index route
+		router.push('/');
 	};
 
 	return (
@@ -38,26 +43,37 @@ export default function Login() {
 				style={styles.background}
 			>
 				<Text style={styles.title}>Login</Text>
+				<Text style={styles.label}>Email</Text>
 				<TextInput
 					style={styles.input}
-					placeholder='Email'
+					placeholder='Enter your email'
 					value={email}
 					onChangeText={setEmail}
 					autoCapitalize='none'
 					keyboardType='email-address'
 				/>
+				<Text style={styles.label}>Password</Text>
 				<TextInput
 					style={styles.input}
-					placeholder='Password'
+					placeholder='Enter your password'
 					value={password}
 					onChangeText={setPassword}
 					secureTextEntry
 				/>
-				<Pressable
-					style={styles.button}
-					onPress={handleLogin}>
-					<Text style={styles.buttonText}>Submit</Text>
-				</Pressable>
+				<View style={styles.buttonContainer}>
+					<Pressable
+						style={styles.button}
+						onPress={handleLogin}
+					>
+						<Text style={styles.buttonText}>Submit</Text>
+					</Pressable>
+					<Pressable
+						style={[styles.button, styles.cancelButton]}
+						onPress={handleCancel}
+					>
+						<Text style={styles.buttonText}>Cancel</Text>
+					</Pressable>
+				</View>
 				<Text style={styles.registerText}>
 					Don't have an account?{' '}
 					<Text
@@ -76,9 +92,6 @@ export default function Login() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'rgba(255, 255, 255, 0.8)',
-		padding: 20,
-		borderRadius: 10,
 	},
 	background: {
 		flex: 1,
@@ -91,19 +104,34 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		textAlign: 'center',
 	},
+	label: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		marginBottom: 5,
+	},
 	input: {
 		height: 40,
+		width: 200,
 		borderColor: 'gray',
 		borderWidth: 1,
 		marginBottom: 10,
 		paddingHorizontal: 10,
 		borderRadius: 5,
 	},
+	buttonContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		width: '60%',
+	},
 	button: {
-		backgroundColor: '#35414d',
+		backgroundColor: '#869C71',
 		padding: 10,
 		borderRadius: 5,
-		marginTop: 10,
+		flex: 1,
+		marginHorizontal: 5,
+	},
+	cancelButton: {
+		backgroundColor: '#35414D',
 	},
 	buttonText: {
 		color: 'white',
