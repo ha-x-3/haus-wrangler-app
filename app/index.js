@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 		height: 100,
 		width: '100%',
 		marginBottom: 30,
-		marginTop: -60,
+		marginTop: -110,
 	},
 	logo: {
 		height: 284,
