@@ -1,9 +1,18 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { decode as atob } from 'base-64';
 
 const AuthContext = createContext();
+
+const logToken = async () => {
+	try {
+		const token = await SecureStore.getItemAsync('token');
+		console.log('Token from SecureStore:', token);
+	} catch (error) {
+		console.error('Error getting token from SecureStore:', error);
+	}
+};
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
@@ -13,10 +22,9 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	const checkAuthentication = async () => {
-		const token = await AsyncStorage.getItem('user');
-		console.log(token);
-		if (token) {
-			try {
+		try {
+			const token = await SecureStore.getItemAsync('token');
+			if (token) {
 				const decodedToken = decodeJWT(token);
 				if (decodedToken) {
 					const { username } = decodedToken;
@@ -24,11 +32,11 @@ export const AuthProvider = ({ children }) => {
 				} else {
 					setUser(null);
 				}
-			} catch (error) {
-				console.error('Error verifying token:', error);
+			} else {
 				setUser(null);
 			}
-		} else {
+		} catch (error) {
+			console.error('Error verifying token:', error);
 			setUser(null);
 		}
 	};
@@ -45,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 			);
 			if (response.data.accessToken) {
 				const token = response.data.accessToken;
-				AsyncStorage.setItem('user', token);
+				await SecureStore.setItemAsync('token', token);
 				checkAuthentication();
 			} else {
 				console.error('Invalid response format');
@@ -58,13 +66,7 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = async (callback) => {
 		try {
-			const token = await AsyncStorage.getItem('user');
-			await axios.post('http://localhost:8080/api/logout', null, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			});
-			AsyncStorage.removeItem('user');
+			await SecureStore.deleteItemAsync('token');
 			setUser(null);
 			callback();
 		} catch (error) {
@@ -87,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ user, login, logout, checkAuthentication }}
+			value={{ user, login, logout, checkAuthentication, logToken }}
 		>
 			{children}
 		</AuthContext.Provider>
@@ -98,4 +100,4 @@ export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-export { AuthContext };
+export { AuthContext, logToken };
