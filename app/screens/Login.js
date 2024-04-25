@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
 	ImageBackground,
 	StyleSheet,
 	Text,
 	TextInput,
-	TouchableOpacity,
+	Pressable,
 	View,
 } from 'react-native';
 import { useAuth } from '../AuthContext';
@@ -53,12 +53,11 @@ export default function Login() {
 					onChangeText={setPassword}
 					secureTextEntry
 				/>
-				<TouchableOpacity
+				<Pressable
 					style={styles.button}
-					onPress={handleLogin}
-				>
+					onPress={handleLogin}>
 					<Text style={styles.buttonText}>Submit</Text>
-				</TouchableOpacity>
+				</Pressable>
 				<Text style={styles.registerText}>
 					Don't have an account?{' '}
 					<Text

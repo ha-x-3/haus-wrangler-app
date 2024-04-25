@@ -1,4 +1,4 @@
-import { View, ImageBackground, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, ImageBackground, Image, Pressable, Text, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 
 export default function Page() {
@@ -24,16 +24,17 @@ export default function Page() {
 					source={logo}
 					style={styles.logo}
 				/>
-				<TouchableOpacity 
+				<Pressable
 					onPress={() => {
-						router.push("/screens/Login");
+						router.push('/screens/Login');
 					}}
-					style={styles.loginBtn}>
+					style={styles.loginBtn}
+				>
 					<Text style={styles.loginText}>Login</Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.registerBtn}>
+				</Pressable>
+				<Pressable style={styles.registerBtn}>
 					<Text style={styles.registerText}>Register New User</Text>
-				</TouchableOpacity>
+				</Pressable>
 			</ImageBackground>
 		</View>
 	);
