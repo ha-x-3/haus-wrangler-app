@@ -59,7 +59,10 @@ export default function Page() {
 						<Text style={styles.loginText}>Login</Text>
 					</Pressable>
 				)}
-				<Pressable style={styles.registerBtn}>
+				<Pressable
+					style={styles.registerBtn}
+					onPress={() => router.push('/screens/Register')}
+				>
 					<Text style={styles.registerText}>Register New User</Text>
 				</Pressable>
 			</ImageBackground>

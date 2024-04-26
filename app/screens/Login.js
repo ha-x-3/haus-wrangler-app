@@ -78,7 +78,7 @@ export default function Login() {
 					Don't have an account?{' '}
 					<Text
 						style={styles.registerLink}
-						onPress={() => router.push('/RegisterScreen')}
+						onPress={() => router.push('/screens/Register')}
 					>
 						Register here
 					</Text>
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		paddingHorizontal: 10,
 		borderRadius: 5,
+		backgroundColor: 'white',
 	},
 	buttonContainer: {
 		flexDirection: 'row',
