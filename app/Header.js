@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, Pressable } from 'react-native';
 import { useAuth } from './AuthContext';
 import { useRouter } from 'expo-router';
 
@@ -26,55 +26,60 @@ const Header = () => {
 
 	return (
 		<View style={styles.container}>
-            <View>
-                <TouchableOpacity onPress={() => router.push('/')}>
-				<Image
-					source={require('../assets/HausWranglerIconText.png')}
-					style={styles.logo}
-				/>
-			</TouchableOpacity>
-            </View>
 			<View>
-                <View style={styles.navLinksContainer}>
-                    <View style={styles.navLinksRow}>
-                        <TouchableOpacity
-                            onPress={() => navigateToScreen('FilterChange')}
-                        >
-                            <Text style={styles.navLink}>Replace Filter</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => navigateToScreen('FilterHistory')}
-                        >
-                            <Text style={styles.navLink}>Filter History</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.navLinksRow}>
-                        <TouchableOpacity
-                            onPress={() => navigateToScreen('NotificationHistory')}
-                        >
-                            <Text style={styles.navLink}>Notification History</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigateToScreen('Edit')}>
-                            <Text style={styles.navLink}>Edit</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.userNav}>
-                    {user ? (
-                        <>
-                            <Text style={styles.userGreeting}>Welcome, {user}</Text>
-                            <TouchableOpacity onPress={handleLogout}>
-                                <Text style={styles.logoutButton}>Logout</Text>
-                            </TouchableOpacity>
-                        </>
-                    ) : (
-                        <TouchableOpacity onPress={() => navigateToScreen('Login')}>
-                            <Text style={styles.loginButton}>Login</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
-            </View>
-			
+				<Pressable onPress={() => router.push('/')}>
+					<Image
+						source={require('../assets/HausWranglerIconText.png')}
+						style={styles.logo}
+					/>
+				</Pressable>
+			</View>
+			<View>
+				<View style={styles.navLinksContainer}>
+					<View style={styles.navLinksRow}>
+						<Pressable
+							onPress={() => navigateToScreen('FilterChange')}
+						>
+							<Text style={styles.navLink}>Replace Filter</Text>
+						</Pressable>
+						<Pressable
+							onPress={() => navigateToScreen('FilterHistory')}
+						>
+							<Text style={styles.navLink}>Filter History</Text>
+						</Pressable>
+					</View>
+					<View style={styles.navLinksRow}>
+						<Pressable
+							onPress={() =>
+								navigateToScreen('NotificationHistory')
+							}
+						>
+							<Text style={styles.navLink}>
+								Notification History
+							</Text>
+						</Pressable>
+						<Pressable onPress={() => navigateToScreen('Edit')}>
+							<Text style={styles.navLink}>Edit</Text>
+						</Pressable>
+					</View>
+				</View>
+				<View style={styles.userNav}>
+					{user ? (
+						<>
+							<Text style={styles.userGreeting}>
+								Welcome, {user}
+							</Text>
+							<Pressable onPress={handleLogout}>
+								<Text style={styles.logoutButton}>Logout</Text>
+							</Pressable>
+						</>
+					) : (
+						<Pressable onPress={() => navigateToScreen('Login')}>
+							<Text style={styles.loginButton}>Login</Text>
+						</Pressable>
+					)}
+				</View>
+			</View>
 		</View>
 	);
 };
