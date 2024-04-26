@@ -58,7 +58,7 @@ const Header = () => {
 								Notification History
 							</Text>
 						</Pressable>
-						<Pressable onPress={() => navigateToScreen('Edit')}>
+						<Pressable onPress={() => navigateToScreen('AddEquipment')}>
 							<Text style={styles.navLink}>Edit</Text>
 						</Pressable>
 					</View>

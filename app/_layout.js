@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function Layout() {
 
-    logToken();
+    //logToken();
 
     return (
         <AuthProvider>
