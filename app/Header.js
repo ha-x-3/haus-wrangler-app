@@ -80,7 +80,7 @@ const Header = () => {
 					</View>
 				</View>
 			) : (
-				// If there is no user, render the Login/Logout button
+				// If there is no user, render the Login button
 				<View style={styles.userNav}>
 					<Pressable onPress={() => router.push('/screens/Login')}>
 						<Text style={styles.loginButton}>Login</Text>
