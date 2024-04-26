@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		flexDirection: 'row',
-		backgroundColor: '#f2f2f2',
+		backgroundColor: 'rgb(198, 182, 129)',
 		paddingVertical: 10,
 	},
 	headerCell: {
@@ -150,16 +150,19 @@ const styles = StyleSheet.create({
 	},
 	row: {
 		flexDirection: 'row',
-		paddingVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
 		borderBottomWidth: 1,
 		borderBottomColor: '#ddd',
+		backgroundColor: 'rgba(198, 182, 129, 0.8)',
+        padding: 10,
 	},
 	cell: {
 		flex: 1,
 		textAlign: 'center',
 	},
 	deleteButton: {
-		backgroundColor: '#ff4d4d',
+		backgroundColor: '#35414D',
 		padding: 10,
 		borderRadius: 5,
 	},

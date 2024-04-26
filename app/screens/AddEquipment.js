@@ -35,11 +35,10 @@ const styles = StyleSheet.create({
 	},
     equipmentForm: {
         marginTop: 400,
-        width: '80%',
         height: '30%',
     },
     equipmentTable: {
-        width: '80%',
+        width: '85%',
         height: '100%',
     },
 });

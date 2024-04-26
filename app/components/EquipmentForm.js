@@ -114,10 +114,12 @@ const AddEquipmentForm = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
 	},
 	label: {
 		fontSize: 16,
-        fontWeight: 'bold',
+		fontWeight: 'bold',
 		marginBottom: 5,
 	},
 	input: {
@@ -126,7 +128,8 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		padding: 10,
 		marginBottom: 10,
-        backgroundColor: 'white',
+		backgroundColor: 'white',
+        width: '100%',
 	},
 	inputError: {
 		borderColor: 'red',
@@ -136,11 +139,12 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	button: {
-		backgroundColor: 'blue',
+		backgroundColor: '#869C71',
 		padding: 10,
 		borderRadius: 5,
 		alignItems: 'center',
-        marginTop: 10,
+		marginTop: 10,
+        width: '50%',
 	},
 	buttonText: {
 		color: 'white',
