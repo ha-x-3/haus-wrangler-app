@@ -1,4 +1,5 @@
 import { ImageBackground, View, StyleSheet } from 'react-native';
+import AddEquipmentForm from '../components/EquipmentForm';
 import EquipmentTable from '../components/EquipmentTable';
 
 export default function AddEquipment() {
@@ -12,6 +13,9 @@ export default function AddEquipment() {
 				resizeMode='cover'
 				style={styles.background}
             >
+                <View style={styles.equipmentForm}>
+                    <AddEquipmentForm />
+                </View>
 				<View style={styles.equipmentTable}>
 					<EquipmentTable />
 				</View>
@@ -29,8 +33,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+    equipmentForm: {
+        marginTop: 400,
+        width: '80%',
+        height: '30%',
+    },
     equipmentTable: {
         width: '80%',
         height: '100%',
-    }
+    },
 });
