@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
 	userNav: {
 		flexDirection: 'row',
 		alignItems: 'center',
-        justifyContent: 'center',
+		justifyContent: 'center',
 		marginTop: 10,
-        paddingRight: 50,
+		paddingRight: 50,
 	},
 	userGreeting: {
 		color: '#35414D',
@@ -122,12 +122,18 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	logoutButton: {
-		color: '#35414D',
+		backgroundColor: '#35414D',
+		color: 'white',
 		fontWeight: 'bold',
+		padding: 5,
+		borderRadius: 8,
 	},
 	loginButton: {
-		color: '#35414D',
+		backgroundColor: '#35414D',
+		color: 'white',
 		fontWeight: 'bold',
+		padding: 5,
+		borderRadius: 8,
 	},
 });
 
