@@ -34,52 +34,59 @@ const Header = () => {
 					/>
 				</Pressable>
 			</View>
-			<View>
-				<View style={styles.navLinksContainer}>
-					<View style={styles.navLinksRow}>
-						<Pressable
-							onPress={() => navigateToScreen('FilterChange')}
-						>
-							<Text style={styles.navLink}>Replace Filter</Text>
-						</Pressable>
-						<Pressable
-							onPress={() => navigateToScreen('FilterHistory')}
-						>
-							<Text style={styles.navLink}>Filter History</Text>
-						</Pressable>
-					</View>
-					<View style={styles.navLinksRow}>
-						<Pressable
-							onPress={() =>
-								navigateToScreen('NotificationHistory')
-							}
-						>
-							<Text style={styles.navLink}>
-								Notification History
-							</Text>
-						</Pressable>
-						<Pressable onPress={() => navigateToScreen('AddEquipment')}>
-							<Text style={styles.navLink}>Edit</Text>
-						</Pressable>
-					</View>
-				</View>
-				<View style={styles.userNav}>
-					{user ? (
-						<>
-							<Text style={styles.userGreeting}>
-								Welcome, {user}
-							</Text>
-							<Pressable onPress={handleLogout}>
-								<Text style={styles.logoutButton}>Logout</Text>
+			{user ? ( // If there is a user, render navigation links and user greeting
+				<View>
+					<View style={styles.navLinksContainer}>
+						<View style={styles.navLinksRow}>
+							<Pressable
+								onPress={() => navigateToScreen('FilterChange')}
+							>
+								<Text style={styles.navLink}>
+									Replace Filter
+								</Text>
 							</Pressable>
-						</>
-					) : (
-						<Pressable onPress={() => navigateToScreen('Login')}>
-							<Text style={styles.loginButton}>Login</Text>
+							<Pressable
+								onPress={() =>
+									navigateToScreen('FilterHistory')
+								}
+							>
+								<Text style={styles.navLink}>
+									Filter History
+								</Text>
+							</Pressable>
+						</View>
+						<View style={styles.navLinksRow}>
+							<Pressable
+								onPress={() =>
+									navigateToScreen('NotificationHistory')
+								}
+							>
+								<Text style={styles.navLink}>
+									Notification History
+								</Text>
+							</Pressable>
+							<Pressable
+								onPress={() => navigateToScreen('AddEquipment')}
+							>
+								<Text style={styles.navLink}>Edit</Text>
+							</Pressable>
+						</View>
+					</View>
+					<View style={styles.userNav}>
+						<Text style={styles.userGreeting}>Welcome, {user}</Text>
+						<Pressable onPress={handleLogout}>
+							<Text style={styles.logoutButton}>Logout</Text>
 						</Pressable>
-					)}
+					</View>
 				</View>
-			</View>
+			) : (
+				// If there is no user, render the Login/Logout button
+				<View style={styles.userNav}>
+					<Pressable onPress={() => router.push('/screens/Login')}>
+						<Text style={styles.loginButton}>Login</Text>
+					</Pressable>
+				</View>
+			)}
 		</View>
 	);
 };
