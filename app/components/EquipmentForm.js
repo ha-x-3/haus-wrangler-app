@@ -70,7 +70,7 @@ const AddEquipmentForm = () => {
             } catch (error) {
                 console.error('Error:', error);
             } finally {
-                router.back();
+                router.push('/screens/AddEquipment');
             }
 		}
 	};
