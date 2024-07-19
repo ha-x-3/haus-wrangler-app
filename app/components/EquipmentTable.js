@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+	Platform,
 	View,
 	Text,
 	FlatList,
@@ -21,11 +22,11 @@ const EquipmentTable = () => {
 		
 	const loadEquipment = async () => {
 		try {
+			const baseURL = Platform.OS === 'android' ? 'http://10.0.2.2:8080/api/equipment' : 'http://localhost:8080/api/equipment';
 			const token = await SecureStore.getItemAsync('token');
 			if (token) {
 				const result = await axios.get(
-					// 'http://10.0.2.2:8080/api/equipment' <--Android Emulator Dev URL
-					'http://localhost:8080/api/equipment', // <--iOS Emulator Dev URL
+					baseURL,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -43,11 +44,11 @@ const EquipmentTable = () => {
 
 	const handleDelete = async (equipmentId) => {
 		try {
+			const baseURL = Platform.OS === 'android' ? `http://10.0.2.2:8080/api/equipment/${equipmentId}` : `http://localhost:8080/api/equipment/${equipmentId}`;
 			const token = await SecureStore.getItemAsync('token');
 			if (token) {
 				await axios.delete(
-					// `http://10.0.2.2:8080/api/equipment/${equipmentId}` <--Android Emulator Dev URL
-					`http://localhost:8080/api/equipment/${equipmentId}`, // <--iOS Emulator Dev URL
+					baseURL,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,

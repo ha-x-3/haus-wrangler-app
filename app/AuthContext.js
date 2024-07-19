@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { decode as atob } from 'base-64';
@@ -43,9 +44,12 @@ export const AuthProvider = ({ children }) => {
 
 	const login = async (email, password) => {
 		try {
+			const baseURL =
+				Platform.OS === 'android'
+					? 'http://10.0.2.2:8080/api/login'
+					: 'http://localhost:8080/api/login';
 			const response = await axios.post(
-				// 'http://10.0.2.2:8080/api/login',  <--Android Emulator Dev URL
-				'http://localhost:8080/api/login',  // <--iOS Emulator Dev URL
+				baseURL,
 				{ email, password },
 				{
 					headers: { 'Content-Type': 'application/json' },

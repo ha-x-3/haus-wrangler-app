@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+	Platform,
 	View,
 	Text,
 	TextInput,
@@ -55,10 +56,10 @@ const AddEquipmentForm = () => {
 	const saveEquipment = async () => {
         if (validateForm()) {
             try {
+				const baseURL = Platform.OS === 'android' ? 'http://10.0.2.2:8080/api/equipment' : 'http://localhost:8080/api/equipment';
                 const token = await SecureStore.getItemAsync('token');
                 await axios.post(
-					// 'http://10.0.2.2:8080/api/equipment' <--Android Emulator Dev URL
-					'http://localhost:8080/api/equipment', // <--iOS Emulator Dev URL
+					baseURL,
 					equipment,
 					{
 						headers: {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+	Platform,
 	View,
     ImageBackground,
 	Text,
@@ -80,9 +81,9 @@ const Register = () => {
 
 		if (isValid) {
 			try {
+				const baseURL = Platform.OS === 'android' ? 'http://10.0.2.2:8080/api/register' : 'http://localhost:8080/api/register';
 				const response = await axios.post(
-					// 'http://10.0.2.2:8080/api/register' <--Android Emulator Dev URL
-					'http://localhost:8080/api/register', // <--iOS Emulator Dev URL
+					baseURL,
 					{
 						email,
 						password,
