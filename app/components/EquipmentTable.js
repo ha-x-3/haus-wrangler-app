@@ -24,7 +24,8 @@ const EquipmentTable = () => {
 			const token = await SecureStore.getItemAsync('token');
 			if (token) {
 				const result = await axios.get(
-					'http://localhost:8080/api/equipment',
+					// 'http://10.0.2.2:8080/api/equipment' <--Android Emulator Dev URL
+					'http://localhost:8080/api/equipment', // <--iOS Emulator Dev URL
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -45,7 +46,8 @@ const EquipmentTable = () => {
 			const token = await SecureStore.getItemAsync('token');
 			if (token) {
 				await axios.delete(
-					`http://localhost:8080/api/equipment/${equipmentId}`,
+					// `http://10.0.2.2:8080/api/equipment/${equipmentId}` <--Android Emulator Dev URL
+					`http://localhost:8080/api/equipment/${equipmentId}`, // <--iOS Emulator Dev URL
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,

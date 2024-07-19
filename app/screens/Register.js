@@ -81,7 +81,8 @@ const Register = () => {
 		if (isValid) {
 			try {
 				const response = await axios.post(
-					'http://localhost:8080/api/register',
+					// 'http://10.0.2.2:8080/api/register' <--Android Emulator Dev URL
+					'http://localhost:8080/api/register', // <--iOS Emulator Dev URL
 					{
 						email,
 						password,

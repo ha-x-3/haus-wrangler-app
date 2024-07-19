@@ -57,16 +57,17 @@ const AddEquipmentForm = () => {
             try {
                 const token = await SecureStore.getItemAsync('token');
                 await axios.post(
-                    'http://localhost:8080/api/equipment',
-                    equipment,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                            withCredentials: true,
-                        },
-                    }
-                );
+					// 'http://10.0.2.2:8080/api/equipment' <--Android Emulator Dev URL
+					'http://localhost:8080/api/equipment', // <--iOS Emulator Dev URL
+					equipment,
+					{
+						headers: {
+							Authorization: `Bearer ${token}`,
+							'Content-Type': 'application/json',
+							withCredentials: true,
+						},
+					}
+				);
             } catch (error) {
                 console.error('Error:', error);
             } finally {
