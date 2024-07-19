@@ -23,7 +23,7 @@ export default function Login() {
 			await login(email, password);
 			// Navigate to the EditScreen after successful login
 			alert('Login Successful!');
-			router.push('/');
+			router.push('/screens/AddEquipment');
 		} catch (error) {
 			console.error('Error has occurred', error);
 			alert('An error has occurred while logging in.');
